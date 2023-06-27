@@ -27,7 +27,7 @@ jobs:
         run: echo "Running tests... test coverage is 100%!"
 
   build_and_push_image:
-    name: Push docker image to ECR
+    name: Build, push, deploy image to AWS
     needs: run_tests
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/main' }}
@@ -41,9 +41,10 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - name: Login to Amazon ECR
+      - name: Login to public Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
+          registry-type: public
 
       - name: Build Docker image
         run: docker build . -t public.ecr.aws/o0s4l1l3/$ECR_REPOSITORY
