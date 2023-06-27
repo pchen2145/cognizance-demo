@@ -73,6 +73,6 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: us-west-2
-          KUBE_CLUSTER_NAME: mult-tenancy-with-teams
+          KUBE_CLUSTER_NAME: multi-tenancy-with-teams
         with:
           args: rollout restart deployment/python-crypto
