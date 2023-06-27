@@ -14,7 +14,7 @@ Display Price
 def price():
     price = random.randint(2500000, 3500000)/100
     price_string = str(price)
-    return "The price of Ethereum is: " + price_string
+    return "The price of Bitcoin is: " + price_string
 
 """
 Runtime
