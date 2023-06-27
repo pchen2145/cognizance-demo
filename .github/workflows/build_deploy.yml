@@ -44,6 +44,7 @@ jobs:
       - name: Login to public Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
+        with:
           registry-type: public
 
       - name: Build Docker image
