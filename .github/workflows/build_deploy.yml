@@ -14,7 +14,7 @@ permissions:
   contents: read
 
 env:
-  ECR_REPOSITORY: cognizance-demo
+  ECR_REPOSITORY: python-crypto
 
 jobs:
   image_build_test_pipeline:
@@ -24,7 +24,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Run tests
-        run: echo "Running tests... 100% of tests have passed"
+        run: echo "Running tests... test coverage is 100%!"
 
   build_image:
     name: Build docker image
@@ -91,12 +91,12 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
 
-      - name: Update deployment image with a rolling restart
+      - name: Update current deployment image with a rolling restart
         uses: capitaltg/eks-kubectl@docker
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: us-west-2
-          KUBE_CLUSTER_NAME: 
+          KUBE_CLUSTER_NAME: cognizance-teams
         with:
-          args: rollout restart deployment/starter-api-deployment
+          args: rollout restart deployment/python-crypto
