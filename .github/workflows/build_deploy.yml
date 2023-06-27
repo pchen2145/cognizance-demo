@@ -61,6 +61,8 @@ jobs:
           severity: "CRITICAL"
 
       - name: Push image to Amazon ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: docker push public.ecr.aws/o0s4l1l3/$ECR_REPOSITORY:latest
 
       - name: Update current deployment image with a rolling restart
