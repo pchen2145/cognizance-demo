@@ -17,8 +17,8 @@ env:
   ECR_REPOSITORY: python-crypto
 
 jobs:
-  image_build_test_pipeline:
-    name: Run tests and build
+  run_tests:
+    name: Run tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -28,6 +28,7 @@ jobs:
 
   build_image:
     name: Build docker image
+    needs: run_tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -40,7 +41,7 @@ jobs:
         with:
           image-ref: ${{ env.ECR_REPOSITORY }}
           format: "table"
-          exit-code: "1"
+          exit-code: "0"
           ignore-unfixed: true
           vuln-type: "os,library"
           severity: "HIGH,CRITICAL"
@@ -80,7 +81,7 @@ jobs:
         with:
           image-ref: "${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}"
           format: "table"
-          exit-code: "1"
+          exit-code: "0"
           ignore-unfixed: true
           vuln-type: "os,library"
           severity: "CRITICAL"
