@@ -1,4 +1,3 @@
---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -7,14 +6,14 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: python-crypto
-  replicas: 5
+  replicas: 3
   template:
     metadata:
       labels:
         app.kubernetes.io/name: python-crypto
     spec:
       containers:
-      - image: public.ecr.aws/o0s4l1l3/python-crypto
+      - image: public.ecr.aws/m5k5k5p2/python-crypto
         imagePullPolicy: Always
         name: python-crypto
         ports:
