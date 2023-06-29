@@ -48,14 +48,14 @@ jobs:
           registry-type: public
 
       - name: Build Docker image
-        run: docker build . -t public.ecr.aws/o0s4l1l3/$ECR_REPOSITORY
+        run: docker build . -t public.ecr.aws/m5k5k5p2/$ECR_REPOSITORY
 
       - name: Scan for vulnerabilities
         uses: aquasecurity/trivy-action@master
         env:
           TRIVY_OFFLINE_SCAN: true
         with:
-          image-ref: "public.ecr.aws/o0s4l1l3/${{ env.ECR_REPOSITORY }}"
+          image-ref: "public.ecr.aws/m5k5k5p2/${{ env.ECR_REPOSITORY }}"
           format: "table"
           exit-code: "0"
           ignore-unfixed: true
@@ -65,7 +65,7 @@ jobs:
       - name: Push image to Amazon ECR
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        run: docker push public.ecr.aws/o0s4l1l3/$ECR_REPOSITORY:latest
+        run: docker push public.ecr.aws/m5k5k5p2/$ECR_REPOSITORY:latest
 
       - name: Update current deployment image with a rolling restart
         uses: capitaltg/eks-kubectl@docker
