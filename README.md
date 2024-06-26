@@ -2,6 +2,12 @@
 
 Requires kubernetes cluster to be pre-setup and kubeconfig populated with cluster information.
 
-Navigate to the app/ directory and build and tag the Docker image in this repository using the command `docker build . -t public.ecr.aws/m5k5k5p2/python-crypto`
+Navigate to the app/ directory and build and tag the Docker image in this repository using the command `docker build -t python-crypto .`
 
-Authenticate with AWS ECR using the command `aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 962331039642.dkr.ecr.us-east-1.amazonaws.com`
+Authenticate with AWS ECR using the command `aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/m5k5k5p2`
+
+Tag the image with the command `docker tag python-crypto:latest public.ecr.aws/m5k5k5p2/python-crypto:latest`
+
+Push the image to ECR with the command `docker push public.ecr.aws/m5k5k5p2/python-crypto:latest`
+
+Deploy the application with the manifests in manifests/ `kubectl apply -f service.yaml -f deployment.yaml`
