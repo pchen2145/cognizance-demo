@@ -12,7 +12,7 @@ Display Price
 """
 @app.route("/")
 def ethPrice():
-    price = random.randint(2500000, 3500000)/100
+    price = random.randint(2200000, 3300000)/100
     price_string = str(price)
     return "The current price of Ethereum is: " + price_string
 
