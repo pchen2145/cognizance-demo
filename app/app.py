@@ -11,10 +11,16 @@ app = Flask(__name__)
 Display Price
 """
 @app.route("/")
-def price():
+def ethPrice():
     price = random.randint(2500000, 3500000)/100
     price_string = str(price)
     return "The current price of Ethereum is: " + price_string
+
+#@app.route("/nvidia")
+#def nvdaPrice():
+#    price = random.randint(11000, 16000)/100
+#    price_string = str(price)
+#    return "The current price of NVIDIA is: " + price_string
 
 """
 Runtime
