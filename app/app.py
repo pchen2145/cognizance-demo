@@ -16,11 +16,16 @@ def ethPrice():
     price_string = str(price)
     return "The current price of Ethereum is: " + price_string
 
-#@app.route("/nvidia")
-#def nvdaPrice():
-#    price = random.randint(11000, 16000)/100
-#    price_string = str(price)
-#    return "The current price of NVIDIA is: " + price_string
+@app.route("/nvidia")
+def nvdaPrice():
+    price = random.randint(11000, 16000)/100
+    price_string = str(price)
+    return "The current price of NVIDIA is: " + price_string
+
+@app.route("/release")
+def releaseVersion():
+    return "Release V1.0.0"
+
 
 """
 Runtime
